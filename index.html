@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NovaTech — thoughtfully selected electronics for modern life." />
+  <title>NovaTech — Future-ready electronics</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script>
+    document.documentElement.dataset.theme = localStorage.getItem('novatech-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  </script>
+  <style>
+    /* Hide Google Translate top banner & popup */
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+
+    body {
+      top: 0px !important;
+    }
+
+    .goog-tooltip {
+      display: none !important;
+    }
+
+    .goog-tooltip:hover {
+      display: none !important;
+    }
+
+    .goog-text-highlight {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header" id="top">
+    <nav class="top-nav" aria-label="Primary navigation">
+      <div class="top-nav-inner">
+        <a class="brand" href="index.html" aria-label="NovaTech home">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          <span>NOVA<span>TECH</span></span>
+        </a>
+
+        <!-- Mobile Deliver To Bar -->
+        <div class="mobile-deliver-to" data-open-location>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span style="flex:1; margin-left:8px;">Deliver to <strong style="margin-left:4px;">Home</strong></span>
+        </div>
+
+        <form class="nav-search" id="nav-search-form" role="search">
+          <select class="nav-search-cat" id="nav-search-cat" aria-label="Search category">
+            <option value="All">All</option>
+            <option value="Audio">Audio</option>
+            <option value="Computing">Computing</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Smart Home">Smart Home</option>
+          </select>
+          <input type="search" id="nav-search-input" class="nav-search-input" placeholder="Search products"
+            autocomplete="off" />
+          <button type="submit" class="nav-search-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="m16 16 4.3 4.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </form>
+
+        <div class="top-nav-actions">
+          <div class="top-nav-link"
+            style="cursor: pointer; display: flex; align-items: center; gap: 4px; position: relative;"
+            title="Select Language">
+            <span aria-hidden="true" style="font-size: 14px; pointer-events: none;"></span>
+            <div style="display: flex; flex-direction: column; pointer-events: none;">
+              <small style="font-size: 10px; color: #ccc;">Language</small>
+              <div id="lang-display" style="font-weight: 700; font-size: 12px; color: #fff;">EN - English</div>
+            </div>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="margin-left: -2px; margin-top: 12px; pointer-events: none;">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+            <select id="lang-select" onchange="changeLanguage(this)"
+              style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; appearance: none; -webkit-appearance: none;">
+              <option value="en">EN - English</option>
+              <option value="hi">HI - Hindi</option>
+              <option value="pa">PA - Punjabi</option>
+            </select>
+          </div>
+
+          <button id="theme-toggle" class="top-nav-link" aria-label="Toggle light and dark theme">
+            <span id="theme-toggle-icon"></span>
+            <div><small>Theme</small><strong>Mode</strong></div>
+          </button>
+
+          <a class="top-nav-link" href="account.html">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <div><small>Hello, sign in</small><strong>Login</strong></div>
+          </a>
+
+          <a class="top-nav-link" href="wishlist.html" aria-label="Open wishlist">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" aria-hidden="true">
+              <path
+                d="M20.8 4.9a5.4 5.4 0 0 0-7.6 0L12 6.1l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.5a5.4 5.4 0 0 0 0-7.6Z" />
+            </svg>
+            <strong>Wishlist</strong>
+            <b class="count-badge wishlist-count">0</b>
+          </a>
+
+          <button class="top-nav-link cart-link" data-open-cart aria-label="Open shopping cart">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" aria-hidden="true">
+              <path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L20 7H6.2" />
+              <circle cx="9" cy="20" r="1.2" />
+              <circle cx="17" cy="20" r="1.2" />
+            </svg>
+            <strong>Cart</strong>
+            <b class="count-badge cart-count">0</b>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="secondary-nav" aria-label="Secondary navigation">
+      <div class="secondary-nav-inner" id="secondary-nav-links">
+        <button class="sec-nav-link" data-open-all-menu> All</button>
+        <a class="sec-nav-link" href="#shop">Shop</a>
+        <button class="sec-nav-link" data-open-categories>Categories </button>
+        <a class="sec-nav-link" href="#offers">Deals</a>
+        <a class="sec-nav-link" href="wishlist.html">Wishlist</a>
+        <a class="sec-nav-link" href="orders.html">Returns & Orders</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero section-wrap" aria-labelledby="hero-title">
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow"><span></span> The future, delivered</p>
+        <h1 id="hero-title">Technology that<br /><em>moves with you.</em></h1>
+        <p class="hero-text">Discover handpicked premium electronics built for modern life — exceptional performance,
+          refined design, and lasting quality.</p>
+        <div class="hero-cta">
+          <a class="button button-lime" href="#shop">Explore premium drops <span></span></a>
+          <a class="text-link" href="#offers">See limited offers <span></span></a>
+        </div>
+        <div class="trust-row" aria-label="Store benefits">
+          <div><strong>48hr</strong><span>express dispatch</span></div>
+          <div><strong>2-year</strong><span>easy warranty</span></div>
+          <div><strong>4.9/5</strong><span>from 12k+ reviews</span></div>
+        </div>
+        <div class="hero-highlights">
+          <span>Concierge support, 24/7</span>
+          <span>Handpicked premium launches</span>
+          <span>Secure checkout and fast fulfillment</span>
+        </div>
+      </div>
+
+      <div class="hero-art tilt-surface" data-reveal data-reveal-delay="120" aria-label="Featured Nova X1 headphones">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-label top-label"><span>01</span> IMMERSIVE AUDIO</div>
+        <div class="hero-label bottom-label"><span>40H</span> PLAYTIME</div>
+        <div class="hero-status"><i></i> IN STOCK</div>
+        <div class="hero-product-card">
+          <div class="hero-model">NOVA<br />X1</div>
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=90"
+            alt="Black over-ear wireless headphones" />
+          <div class="hero-price"><span>from</span><strong>₹9,999</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Announcement Marquee Bar -->
+    <section class="announce-bar" aria-label="Current promotion">
+      <div>END OF SEASON EVENT <b>·</b> UP TO 40% OFF <b>·</b> FREE EXPRESS DELIVERY <b>·</b> NO COST EMI AVAILABLE
+        <b>·</b> END OF SEASON EVENT <b>·</b> UP TO 40% OFF <b>·</b></div>
+    </section>
+
+    <!-- Premium Showcase -->
+    <section class="section-wrap premium-showcase" aria-labelledby="premium-title">
+      <div class="section-heading" data-reveal>
+        <div>
+          <p class="eyebrow"><span></span> Know more about our products</p>
+          <h2 id="premium-title">The advantage of choosing NovaTech.</h2>
+        </div>
+      </div>
+      <div class="premium-grid" data-reveal data-reveal-delay="80">
+        <article class="premium-card">
+          <strong>Curated luxury</strong>
+          <p>Only products that blend performance, design, and reliability make it into our collection.</p>
+        </article>
+        <article class="premium-card">
+          <strong>Priority delivery</strong>
+          <p>Express shipping and premium support ensure your gear arrives faster and ready to go.</p>
+        </article>
+        <article class="premium-card">
+          <strong>Exclusive access</strong>
+          <p>Early-release offers, limited drops, and private previews for our most dedicated customers.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="section-wrap offers-showcase" id="offers" aria-labelledby="offers-title">
+      <div class="section-heading" data-reveal>
+        <div>
+          <p class="eyebrow"><span></span> Prices worth moving for</p>
+          <h2 id="offers-title">Hot Deals & Limited Drops</h2>
+        </div>
+        <a class="text-link" href="#shop" id="view-all-deals-link">View all deals <span></span></a>
+      </div>
+      <div class="deal-grid" id="deal-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- Category Collection Grid -->
+    <section class="section-wrap collections" id="categories" aria-labelledby="categories-title">
+      <div class="section-heading" data-reveal>
+        <div>
+          <p class="eyebrow"><span></span> Shop by collection</p>
+          <h2 id="categories-title">Find your frequency.</h2>
+        </div>
+        <button class="text-link" data-open-categories>View all categories <span></span></button>
+      </div>
+      <div class="category-grid">
+        <button class="category-card cat-a" data-select-category="Audio" data-reveal data-reveal-delay="0">
+          <span>Audio</span><small>6 items <i></i></small>
+        </button>
+        <button class="category-card cat-b" data-select-category="Computing" data-reveal data-reveal-delay="70">
+          <span>Computing</span><small>6 items <i></i></small>
+        </button>
+        <button class="category-card cat-c" data-select-category="Mobile" data-reveal data-reveal-delay="140">
+          <span>Mobile</span><small>5 items <i></i></small>
+        </button>
+        <button class="category-card cat-d" data-select-category="Smart Home" data-reveal data-reveal-delay="210">
+          <span>Smart Home</span><small>5 items <i></i></small>
+        </button>
+      </div>
+    </section>
+
+    <!-- Feature Spotlight Deal of the Day -->
+    <section class="deal-section" id="deals" aria-labelledby="deal-title">
+      <div class="section-wrap deal-inner">
+        <div class="deal-visual" data-reveal>
+          <div class="deal-sticker">DEAL<br />OF THE<br />DAY</div>
+          <span class="floating-chip">165HZ OLED</span>
+          <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=1000&q=85"
+            alt="Arc Ultrawide monitor" />
+        </div>
+        <div class="deal-copy" data-reveal data-reveal-delay="100">
+          <p class="eyebrow lime"><span></span> Today only · Limited stock</p>
+          <div class="countdown" aria-label="Time remaining" id="deal-countdown">
+            <div><b id="countdown-hrs">08</b><span>hrs</span></div><i>:</i>
+            <div><b id="countdown-min">42</b><span>min</span></div><i>:</i>
+            <div><b id="countdown-sec">18</b><span>sec</span></div>
+          </div>
+          <p class="product-kicker">COMPUTING</p>
+          <h2 id="deal-title">Arc 34” Ultrawide OLED Display</h2>
+          <div class="rating"><span></span> <b>4.8</b> <small>(294 verified reviews)</small></div>
+          <p class="deal-description">A canvas-wide 1800R display with deep contrast and a 165Hz refresh rate built for
+            your best work and play.</p>
+          <div class="price-line">
+            <strong>₹48,990</strong><del>₹64,990</del><mark>24% OFF</mark>
+          </div>
+          <div class="deal-actions">
+            <button class="button button-lime add-to-cart" data-product="arc-monitor">Add to cart
+              <span>+</span></button>
+            <a class="button button-outline" href="product.html?id=arc-monitor">View specs</a>
+            <button class="circle-button wishlist-btn" data-product="arc-monitor"
+              aria-label="Save Arc monitor"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Catalog Section with Filters & Sorting -->
+    <section class="section-wrap products-section" id="shop" aria-labelledby="products-title">
+      <div class="section-heading product-heading" data-reveal>
+        <div>
+          <p class="eyebrow"><span></span> Curated essentials</p>
+          <h2 id="products-title">Just landed.</h2>
+        </div>
+      </div>
+
+      <!-- Catalog Filter Toolbar -->
+      <div class="catalog-toolbar" data-reveal>
+        <label>Category
+          <select id="category-filter"></select>
+        </label>
+
+        <label>Price
+          <select id="price-filter">
+            <option value="all">All prices</option>
+            <option value="under-5000">Under ₹5,000</option>
+            <option value="5000-10000">₹5,000–₹10,000</option>
+            <option value="10000-25000">₹10,000–₹25,000</option>
+            <option value="25000-50000">₹25,000–₹50,000</option>
+            <option value="above-50000">Above ₹50,000</option>
+          </select>
+        </label>
+
+        <label>Rating
+          <select id="rating-filter">
+            <option value="all">All ratings</option>
+            <option value="4">4 and above</option>
+            <option value="4.5">4.5 and above</option>
+          </select>
+        </label>
+
+        <label>Availability
+          <select id="stock-filter">
+            <option value="all">All products</option>
+            <option value="in-stock">In stock</option>
+          </select>
+        </label>
+
+        <label class="deal-check">
+          <input type="checkbox" id="deal-filter" /> Deals only
+        </label>
+
+        <label>Sort
+          <select id="sort-filter">
+            <option value="featured">Featured</option>
+            <option value="newest">Newest</option>
+            <option value="low-high">Price: Low to High</option>
+            <option value="high-low">Price: High to Low</option>
+            <option value="rating">Rating: High to Low</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
+        </label>
+
+        <button class="clear-filter" id="clear-filters">Clear filters</button>
+      </div>
+
+      <p class="catalog-result" id="catalog-result" aria-live="polite"></p>
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+
+      <div class="center">
+        <button class="button button-outline" id="load-more">Load more gear <span></span></button>
+      </div>
+    </section>
+
+    <!-- Services Strip -->
+    <section class="section-wrap service-strip" aria-label="Shopping benefits" data-reveal>
+      <article><span class="service-icon"></span>
+        <div>
+          <h3>Free express delivery</h3>
+          <p>On all orders above ₹999</p>
+        </div>
+      </article>
+      <article><span class="service-icon"></span>
+        <div>
+          <h3>14-day easy returns</h3>
+          <p>Risk-free replacement guarantee</p>
+        </div>
+      </article>
+      <article><span class="service-icon"></span>
+        <div>
+          <h3>Pay your way</h3>
+          <p>UPI, Credit/Debit, EMI & COD</p>
+        </div>
+      </article>
+      <article><span class="service-icon"></span>
+        <div>
+          <h3>Genuine warranty</h3>
+          <p>100% verified authentic tech</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter section-wrap" aria-labelledby="newsletter-title" data-reveal>
+      <div>
+        <p class="eyebrow"><span></span> On the signal</p>
+        <h2 id="newsletter-title">Good things are<br /><em>on their way.</em></h2>
+      </div>
+      <form id="newsletter-form" class="newsletter-form">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" type="email" placeholder="Your email address" required />
+        <button class="button button-lime" type="submit">Subscribe <span></span></button>
+        <p>New drops, private offers, zero noise. Unsubscribe anytime.</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Reusable Full Site Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="section-wrap footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">N</span><span>NOVA<span>TECH</span></span>
+        </a>
+        <p>Thoughtfully selected electronics engineered for modern life. Designed for reliability, elegance, and pure
+          performance.</p>
+        <div class="socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <h3>Shop Catalog</h3>
+          <a href="index.html#shop">All Products</a>
+          <a href="index.html#offers">Deals of the Day</a>
+          <button class="footer-link-button" data-open-categories>Category Sidebar</button>
+          <a href="wishlist.html">My Wishlist</a>
+        </div>
+        <div>
+          <h3>Customer Service</h3>
+          <a href="orders.html">Track Order</a>
+          <a href="orders.html">Returns & Exchange</a>
+          <a href="policies.html?policy=shipping">Shipping Policy</a>
+          <a href="policies.html?policy=faq">FAQ & Support</a>
+        </div>
+        <div>
+          <h3>Account & Seller</h3>
+          <a href="account.html">My Account</a>
+          <a href="account.html">Rewards & Points</a>
+          <a href="seller.html">Become a Seller</a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Contact Us</h3>
+        <p>Have a question? Send us a message.</p>
+        <form id="footer-contact-form">
+          <input type="email" placeholder="Email address" required />
+          <textarea rows="2" placeholder="How can we help?" required></textarea>
+          <button class="text-link" type="submit" style="margin-top: 8px;">Send message <span></span></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Extra links & Payment Options -->
+    <div class="section-wrap footer-expanded">
+      <div class="payment-options" aria-label="Demo payment options">
+        <span>UPI</span>
+        <span>VISA</span>
+        <span>MASTERCARD</span>
+        <span>RUPAY</span>
+        <span>NET BANKING</span>
+        <span>CASH ON DELIVERY</span>
+        <span>EMI</span>
+      </div>
+
+      <div class="footer-extra-links">
+        <details open>
+          <summary>Customer Service</summary>
+          <a href="mailto:support@novatech.demo">Contact Support</a>
+          <a href="policies.html?policy=faq">FAQ</a>
+          <a href="policies.html?policy=shipping">Shipping Policy</a>
+          <a href="orders.html">Track & Return Order</a>
+        </details>
+        <details open>
+          <summary>Store Policies</summary>
+          <a href="policies.html?policy=returns">Return Policy</a>
+          <a href="policies.html?policy=payment">Payment Policy</a>
+          <a href="policies.html?policy=security">Security Policy</a>
+          <a href="policies.html?policy=privacy">Privacy Policy</a>
+          <a href="policies.html?policy=fssai">FSSAI Notice</a>
+          <a href="policies.html?policy=terms">Terms of Use</a>
+          <a href="policies.html?policy=cancellation">Cancellation Policy</a>
+        </details>
+        <details open>
+          <summary>Partnerships</summary>
+          <a href="seller.html">Become a Seller</a>
+          <a href="account.html">NovaTech Rewards</a>
+          <button class="footer-link-button" data-open-location>Set Delivery Location</button>
+        </details>
+      </div>
+    </div>
+
+    <div class="section-wrap footer-bottom">
+      <span>© 2026 NovaTech. All rights reserved. Made for the curious.</span>
+      <div>
+        <a href="policies.html?policy=privacy">Privacy</a>
+        <a href="policies.html?policy=terms">Terms</a>
+        <a href="policies.html?policy=security">Security</a>
+      </div>
+      <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to top </button>
+    </div>
+  </footer>
+
+  <!-- Category Sidebar Drawer -->
+  <aside class="side-panel category-panel panel-left" id="category-panel" aria-hidden="true"
+    aria-label="Product categories">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow"><span></span> Explore NovaTech</p>
+        <h2>Categories</h2>
+      </div>
+      <button class="modal-close" data-close-panel aria-label="Close categories">×</button>
+    </div>
+    <nav class="category-drawer-list" id="category-drawer-list" aria-label="Product categories"></nav>
+  </aside>
+
+  <!-- Cart Side Panel -->
+  <aside class="side-panel" id="cart-panel" aria-hidden="true" aria-label="Shopping cart">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow"><span></span> Your selection</p>
+        <h2>Shopping Bag <small class="cart-count">0</small></h2>
+      </div>
+      <button class="modal-close" data-close-panel aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="panel-foot">
+      <div class="subtotal">
+        <span>Subtotal</span>
+        <strong id="cart-subtotal">₹0</strong>
+      </div>
+      <small>Free express shipping on all orders.</small>
+      <a class="button button-lime full" href="checkout.html">Proceed to Checkout <span></span></a>
+    </div>
+  </aside>
+
+  <!-- Location Side Panel -->
+  <aside class="side-panel location-panel" id="location-panel" aria-hidden="true" aria-label="Delivery location">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow"><span></span> Delivery location</p>
+        <h2>Set PIN & Address</h2>
+      </div>
+      <button class="modal-close" data-close-panel aria-label="Close location selector">×</button>
+    </div>
+    <form id="location-form" class="drawer-form">
+      <label>PIN / Postal Code
+        <input id="location-pin" inputmode="numeric" maxlength="6" placeholder="e.g. 400001" required />
+      </label>
+      <label>Address Label
+        <input id="location-name" placeholder="Home, Work, or Office" required />
+      </label>
+      <label>Full Address
+        <textarea id="location-address" rows="3" placeholder="Enter building, street & landmark"></textarea>
+      </label>
+      <label style="flex-direction: row; align-items: center; gap: 8px;">
+        <input id="location-default" type="checkbox" checked /> Set as default address
+      </label>
+      <button class="button button-lime full" type="submit">Save Location</button>
+    </form>
+  </aside>
+
+  <!-- Search Modal -->
+  <div class="modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="search-title">
+    <div class="modal-box search-box">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <p class="eyebrow"><span></span> Find gear</p>
+      <h2 id="search-title">Search NovaTech</h2>
+      <div class="search-large">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.5"></circle>
+          <path d="m16 16 4.3 4.3"></path>
+        </svg>
+        <input id="search-input" autocomplete="off" placeholder="Try “headphones”, “4K”, or “OLED”" />
+        <kbd>esc</kbd>
+      </div>
+      <div id="search-results" class="search-results">
+        <p class="muted">Popular searches: headphones, monitors, watches, powerbank</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local Chatbot Assistant -->
+  <div class="chatbot" aria-live="polite">
+    <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel">
+      <span></span><b>Assistant</b>
+    </button>
+    <section class="chat-panel" id="chat-panel" aria-hidden="true" aria-label="NovaTech Assistant">
+      <header>
+        <div>
+          <h2>Nova Assistant</h2>
+          <span class="chat-status" id="chat-status"> Local Assistant Active</span>
+          <p>Instant answers & product suggestions</p>
+        </div>
+        <div>
+          <button class="chat-icon" id="chat-settings-toggle" aria-label="Chat Settings" title="Configure Gemini API Key"></button>
+          <button class="chat-icon" data-clear-chat aria-label="Clear chat" title="Clear chat history"></button>
+          <button class="chat-icon" data-close-chat aria-label="Close chat">×</button>
+        </div>
+      </header>
+      <div class="chat-settings" id="chat-settings" style="display: none; padding: 12px; background: var(--surface); border-bottom: 1px solid var(--line); font-size: 11px; flex-direction: column; gap: 6px;">
+        <label for="gemini-api-key" style="display: block; font-weight: 600; color: var(--ink);">Google Gemini API Key:</label>
+        <div style="display: flex; gap: 8px;">
+          <input type="password" id="gemini-api-key" placeholder="AIzaSy..." style="flex: 1; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: 11px; background: var(--white); color: var(--ink); outline: none;" />
+          <button id="save-api-key-btn" style="padding: 6px 12px; background: var(--lime); color: #000; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: background-color 0.2s;">Save</button>
+        </div>
+        <p style="margin: 0; color: var(--soft-ink); font-size: 9px; line-height: 1.3;">API keys are stored locally in your browser. Get a free key from <a href="https://aistudio.google.com/" target="_blank" rel="noopener" style="text-decoration: underline; color: var(--ink); font-weight: 600;">Google AI Studio</a>.</p>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-suggestions" id="chat-suggestions">
+        <button>Show me deals</button>
+        <button>Show me audio products</button>
+        <button>What is the cheapest product?</button>
+        <button>How does rewards work?</button>
+        <button>What is your return policy?</button>
+      </div>
+      <form class="chat-form" id="chat-form">
+        <label class="sr-only" for="chat-input">Ask Nova assistant</label>
+        <input id="chat-input" autocomplete="off" placeholder="Ask about products, orders or rewards..." required />
+        <button type="submit" aria-label="Send message"></button>
+      </form>
+    </section>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Fixed Bottom Navigation for Mobile -->
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="bottom-nav-item active">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>home</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <span>you</span>
+    </a>
+    <a href="wallet.html" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"></path></svg>
+      <span>wallet</span>
+    </a>
+    <button class="bottom-nav-item cart-link" data-open-cart>
+      <div style="position: relative; line-height: 0;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.5L20 7H6.2"></path><circle cx="9" cy="20" r="1.2"></circle><circle cx="17" cy="20" r="1.2"></circle></svg>
+        <b class="count-badge cart-count" style="top: -6px; right: -8px;">0</b>
+      </div>
+      <span>cart</span>
+    </button>
+    <button class="bottom-nav-item" onclick="document.getElementById('chat-launcher').click()">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      <span>assistant</span>
+    </button>
+  </nav>
+
+  <!-- Scripts -->
+  <div id="google_translate_element" style="display:none;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="store-data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function changeLanguage(select) {
+      document.getElementById('lang-display').textContent = select.options[select.selectedIndex].text;
+      var lang = select.value;
+      var gtCombo = document.querySelector('.goog-te-combo');
+      if (gtCombo) {
+        gtCombo.value = lang;
+        gtCombo.dispatchEvent(new Event('change'));
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const viewDealsLink = document.getElementById('view-all-deals-link');
+      if (viewDealsLink) {
+        viewDealsLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          const dealFilter = document.getElementById('deal-filter');
+          if (dealFilter) {
+            dealFilter.checked = true;
+            dealOnly = true;
+            renderProducts();
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
