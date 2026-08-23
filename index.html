@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=load.html">
   <meta name="description" content="NovaTech — thoughtfully selected electronics for modern life." />
   <title>NovaTech — Future-ready electronics</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -41,9 +40,428 @@
     }
   </style>
   <link rel="stylesheet" href="style.css" />
+  <style>
+        #loader-wrapper {
+            --bg-dark: #07080b;
+            --lime: #d9ff3e;
+            --lime-glow: rgba(217, 255, 62, 0.4);
+            --cyan: #00f0ff;
+            --cyan-glow: rgba(0, 240, 255, 0.35);
+            --glass-bg: rgba(14, 16, 22, 0.76);
+            --glass-border: rgba(255, 255, 255, 0.14);
+            --text-main: #f3f4f6;
+            --text-muted: #8e95a5;
+            --font-sans: 'Manrope', -apple-system, sans-serif;
+            --font-mono: 'DM Mono', monospace;
+
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: var(--bg-dark);
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            user-select: none;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #loader-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Ambient Background Radial Lights */
+        #loader-wrapper .ambient-glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        #loader-wrapper .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.32;
+            animation: pulse-glow 7s ease-in-out infinite alternate;
+        }
+
+        #loader-wrapper .glow-1 {
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, var(--lime) 0%, rgba(217,255,62,0) 70%);
+            top: -180px;
+            left: -120px;
+        }
+
+        #loader-wrapper .glow-2 {
+            width: 750px;
+            height: 750px;
+            background: radial-gradient(circle, var(--cyan) 0%, rgba(0,240,255,0) 70%);
+            bottom: -220px;
+            right: -160px;
+            animation-delay: -3.5s;
+        }
+
+        #loader-wrapper .glow-3 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, #7000ff 0%, rgba(112,0,255,0) 70%);
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.18;
+        }
+
+        /* Technical Blueprint Grid Overlay */
+        #loader-wrapper .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Floating Viewport & Depth Layers */
+        #loader-wrapper .parallax-viewport {
+            position: absolute;
+            inset: -50px;
+            z-index: 2;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            perspective: 1200px;
+        }
+
+        #loader-wrapper .layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.12s ease-out;
+            will-change: transform;
+        }
+
+        /* Real Electronic Item Card Containers */
+        #loader-wrapper .tech-item {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 22px;
+            background: rgba(18, 22, 32, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            will-change: transform;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        #loader-wrapper .tech-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        /* Depth Layers Configurations */
+        #loader-wrapper .layer-back .tech-item {
+            opacity: 0.38;
+            filter: blur(2.5px);
+            transform: scale(0.62);
+        }
+
+        #loader-wrapper .layer-mid .tech-item {
+            opacity: 0.78;
+            filter: blur(0.6px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        #loader-wrapper .layer-fore .tech-item {
+            opacity: 0.96;
+            filter: blur(0px);
+            border-color: rgba(217, 255, 62, 0.35);
+            box-shadow: 
+                0 20px 45px rgba(0, 0, 0, 0.75),
+                0 0 25px rgba(217, 255, 62, 0.15);
+        }
+
+        #loader-wrapper .tech-item.accent-lime {
+            border-color: rgba(217, 255, 62, 0.5);
+            box-shadow: 0 0 30px rgba(217, 255, 62, 0.25);
+        }
+
+        #loader-wrapper .tech-item.accent-cyan {
+            border-color: rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+        }
+
+        /* Floating Physics Keyframe Animations */
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-28px) rotate(6deg); }
+        }
+
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(32px) rotate(-7deg) scale(1.05); }
+        }
+
+        @keyframes float-3 {
+            0%, 100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
+            33% { transform: translateX(18px) translateY(-20px) rotate(5deg); }
+            66% { transform: translateX(-15px) translateY(15px) rotate(-4deg); }
+        }
+
+        @keyframes float-4 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(14deg); }
+        }
+
+        #loader-wrapper .anim-float-1 { animation: float-1 9s ease-in-out infinite; }
+        #loader-wrapper .anim-float-2 { animation: float-2 12s ease-in-out infinite; }
+        #loader-wrapper .anim-float-3 { animation: float-3 15s ease-in-out infinite; }
+        #loader-wrapper .anim-float-4 { animation: float-4 10s ease-in-out infinite; }
+
+        /* Loader Card Center UI */
+        #loader-wrapper .loader-card {
+            position: relative;
+            z-index: 10;
+            width: min(450px, 90vw);
+            padding: 44px 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(32px) saturate(200%);
+            -webkit-backdrop-filter: blur(32px) saturate(200%);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            box-shadow: 
+                0 35px 80px rgba(0, 0, 0, 0.8),
+                0 0 50px rgba(217, 255, 62, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+
+        #loader-wrapper .logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        #loader-wrapper .logo-box {
+            width: 52px;
+            height: 52px;
+            background: var(--lime);
+            color: #07080b;
+            display: grid;
+            place-items: center;
+            font-family: var(--font-sans);
+            font-size: 28px;
+            font-weight: 800;
+            transform: skew(-9deg);
+            border-radius: 8px;
+            box-shadow: 0 0 25px var(--lime-glow);
+        }
+
+        #loader-wrapper .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        #loader-wrapper .logo-text span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        #loader-wrapper .spinner-wrapper {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            display: grid;
+            place-items: center;
+        }
+
+        #loader-wrapper .spinner-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.08);
+            border-top-color: var(--lime);
+            border-right-color: rgba(217, 255, 62, 0.35);
+            animation: spin 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            filter: drop-shadow(0 0 10px var(--lime-glow));
+        }
+
+        #loader-wrapper .spinner-inner-ring {
+            position: absolute;
+            inset: 12px;
+            border-radius: 50%;
+            border: 3px solid rgba(0, 240, 255, 0.1);
+            border-bottom-color: var(--cyan);
+            animation: spin-reverse 1.6s linear infinite;
+        }
+
+        #loader-wrapper .spinner-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--lime);
+        }
+
+        #loader-wrapper .loading-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        #loader-wrapper .status-text {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--cyan);
+            margin-bottom: 24px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        #loader-wrapper .status-text::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan);
+            animation: pulse-dot 1s infinite alternate;
+        }
+
+        #loader-wrapper .progress-bar-container {
+            position: relative;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 12px;
+        }
+
+        #loader-wrapper .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cyan) 0%, var(--lime) 100%);
+            border-radius: 20px;
+            box-shadow: 0 0 18px var(--lime-glow);
+            transition: width 0.1s linear;
+        }
+
+        #loader-wrapper .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        #loader-wrapper .percent-val {
+            color: var(--lime);
+            font-weight: 500;
+        }
+
+        /* Keyframe Animations */
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.22; transform: scale(0.95); }
+            100% { opacity: 0.38; transform: scale(1.05); }
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.3); }
+        }
+  </style>
 </head>
 
 <body data-page="home">
+  <div id="loader-wrapper">
+      <!-- Ambient Neon Lights -->
+      <div class="ambient-glow">
+          <div class="glow-sphere glow-1"></div>
+          <div class="glow-sphere glow-2"></div>
+          <div class="glow-sphere glow-3"></div>
+      </div>
+
+      <!-- Technical Blueprint Grid -->
+      <div class="bg-grid"></div>
+
+      <!-- Parallax Floating Viewport -->
+      <div class="parallax-viewport" id="parallaxViewport">
+          <div class="layer layer-back" id="layerBack"></div>
+          <div class="layer layer-mid" id="layerMid"></div>
+          <div class="layer layer-fore" id="layerFore"></div>
+      </div>
+
+      <!-- Center Glassmorphism Loader Card -->
+      <div class="loader-card">
+          <div class="logo-group">
+              <div class="logo-box">N</div>
+              <h1 class="logo-text">NOVA<span>TECH</span></h1>
+          </div>
+
+          <div class="spinner-wrapper">
+              <div class="spinner-ring"></div>
+              <div class="spinner-inner-ring"></div>
+              <svg class="spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+          </div>
+
+          <h2 class="loading-title">Initializing Experience</h2>
+
+          <div class="status-text" id="statusText">Scanning hardware modules...</div>
+
+          <div class="progress-bar-container">
+              <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="progress-meta">
+              <span>PREPARING STORE</span>
+              <span class="percent-val" id="percentVal">0%</span>
+          </div>
+      </div>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="cursor-glow" aria-hidden="true"></div>
 
@@ -56,13 +474,25 @@
           <span>NOVA<span>TECH</span></span>
         </a>
 
+        <!-- Desktop Deliver To -->
+        <div class="deliver-to" data-open-location style="cursor: pointer;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <div>
+            <small>Deliver to</small>
+            <strong class="nav-deliver-to-text">Home</strong>
+          </div>
+        </div>
+
         <!-- Mobile Deliver To Bar -->
         <div class="mobile-deliver-to" data-open-location>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
-          <span style="flex:1; margin-left:8px;">Deliver to <strong style="margin-left:4px;">Home</strong></span>
+          <span style="flex:1; margin-left:8px;">Deliver to <strong style="margin-left:4px;" class="nav-deliver-to-text">Home</strong></span>
         </div>
 
         <form class="nav-search" id="nav-search-form" role="search">
@@ -704,6 +1134,138 @@
         });
       }
     });
+
+    // --- Loader Script Merged from load.html ---
+    (function initLoader() {
+        // Prevent scrolling while loader is active
+        document.body.style.overflow = 'hidden';
+
+        const realElectronicsImages = [
+            'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1622979135225-d2ba269bc1bd?auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80' 
+        ];
+
+        const animations = ['anim-float-1', 'anim-float-2', 'anim-float-3', 'anim-float-4'];
+
+        const layersConfig = [
+            { id: 'layerBack', count: 20, minSize: 55, maxSize: 80, class: '' },
+            { id: 'layerMid', count: 16, minSize: 85, maxSize: 115, class: '' },
+            { id: 'layerFore', count: 12, minSize: 120, maxSize: 155, class: 'accent' }
+        ];
+
+        function generatePositions(count) {
+            const positions = [];
+            const cols = Math.ceil(Math.sqrt(count * 1.5));
+            const rows = Math.ceil(count / cols);
+            
+            for (let i = 0; i < count; i++) {
+                const c = i % cols;
+                const r = Math.floor(i / cols);
+                const left = ((c + 0.1 + Math.random() * 0.8) / cols) * 100;
+                const top = ((r + 0.1 + Math.random() * 0.8) / rows) * 100;
+                if (left > 30 && left < 70 && top > 26 && top < 74) {
+                    const pushLeft = left < 50 ? left - 24 : left + 24;
+                    const pushTop = top < 50 ? top - 20 : top + 20;
+                    positions.push({ left: Math.max(2, Math.min(92, pushLeft)), top: Math.max(2, Math.min(92, pushTop)) });
+                } else {
+                    positions.push({ left, top });
+                }
+            }
+            return positions;
+        }
+
+        layersConfig.forEach(cfg => {
+            const container = document.getElementById(cfg.id);
+            if (!container) return;
+            const positions = generatePositions(cfg.count);
+
+            positions.forEach((pos, idx) => {
+                const item = document.createElement('div');
+                item.className = 'tech-item';
+                
+                const imgUrl = realElectronicsImages[(idx + Math.floor(Math.random() * realElectronicsImages.length)) % realElectronicsImages.length];
+                const animClass = animations[Math.floor(Math.random() * animations.length)];
+                item.classList.add(animClass);
+
+                if (cfg.class === 'accent') {
+                    if (idx % 2 === 0) item.classList.add('accent-lime');
+                    else item.classList.add('accent-cyan');
+                }
+
+                const size = Math.floor(cfg.minSize + Math.random() * (cfg.maxSize - cfg.minSize));
+                const delay = (-Math.random() * 12).toFixed(2);
+                const duration = (9 + Math.random() * 8).toFixed(2);
+
+                item.style.width = `${size}px`;
+                item.style.height = `${size}px`;
+                item.style.left = `${pos.left}%`;
+                item.style.top = `${pos.top}%`;
+                item.style.animationDelay = `${delay}s`;
+                item.style.animationDuration = `${duration}s`;
+
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                img.alt = 'Electronic Device';
+                img.loading = 'eager';
+
+                item.appendChild(img);
+                container.appendChild(item);
+            });
+        });
+
+        const statusMessages = [
+            "Scanning hardware modules...",
+            "Initializing Quantum Bus...",
+            "Loading display drivers...",
+            "Rendering 3D catalogue...",
+            "NovaTech store ready!"
+        ];
+
+        const progressFill = document.getElementById('progressFill');
+        const percentVal = document.getElementById('percentVal');
+        const statusText = document.getElementById('statusText');
+        const loaderWrapper = document.getElementById('loader-wrapper');
+
+        let loaderStartTime = null;
+        const loaderTotalDuration = 4800; 
+
+        function animateProgress(timestamp) {
+            if (!loaderStartTime) loaderStartTime = timestamp;
+            const elapsed = timestamp - loaderStartTime;
+            const progress = Math.min(elapsed / loaderTotalDuration, 1);
+            const percentage = Math.floor(progress * 100);
+
+            if (progressFill) progressFill.style.width = `${percentage}%`;
+            if (percentVal) percentVal.textContent = `${percentage}%`;
+
+            const statusIdx = Math.min(Math.floor((percentage / 100) * statusMessages.length), statusMessages.length - 1);
+            if (statusText) statusText.textContent = statusMessages[statusIdx];
+
+            if (progress < 1) {
+                requestAnimationFrame(animateProgress);
+            } else {
+                if (loaderWrapper) {
+                    loaderWrapper.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        loaderWrapper.remove();
+                    }, 500);
+                }
+            }
+        }
+
+        requestAnimationFrame(animateProgress);
+    })();
   </script>
 </body>
 

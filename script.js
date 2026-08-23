@@ -400,11 +400,11 @@ function initLocation() {
   if (label) {
     label.textContent = `${loc.pin || '400001'} (${loc.name || 'Home'})`;
   }
-  const navDeliverTo = $('#nav-deliver-to');
-  if (navDeliverTo) {
+  const navDeliverTos = $$('.nav-deliver-to-text');
+  if (navDeliverTos.length) {
     // Show the area name or pin if area is not found
     const shortName = loc.area || (loc.pin && loc.pin !== '400001' ? loc.pin : 'India');
-    navDeliverTo.textContent = shortName;
+    navDeliverTos.forEach(el => el.textContent = shortName);
   }
 }
 
@@ -1065,7 +1065,7 @@ document.addEventListener('click', e => {
     closeEverything();
     return;
   }
-  const target = e.target.closest('button, a');
+  const target = e.target.closest('button, a, [data-open-location]');
   if (!target) return;
 
   if (target.matches('[data-open-all-menu]')) {
