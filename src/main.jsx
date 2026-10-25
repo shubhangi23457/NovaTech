@@ -5,10 +5,5 @@ import App from './App.jsx';
 import './styles/style.css';
 import './styles/app.css';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+createRoot(document.getElementById('root')).render( <StrictMode> <BrowserRouter basename="/NovaTech"> <App /> </BrowserRouter> </StrictMode>
 );
